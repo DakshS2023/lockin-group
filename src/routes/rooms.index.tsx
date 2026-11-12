@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { rooms, type Room } from "@/content/site";
 import { PageHero, seo } from "@/components/site/PageHero";
-import { themeStyles } from "@/components/site/RoomCard";
+import { themeStyles, RoomStats } from "@/components/site/RoomCard";
 
 export const Route = createFileRoute("/rooms/")({
   head: () => seo("Our Escape Rooms — LockIn Group Singapore", "Explore Search & Rescue, Alpha Team: Classified and The Genie’s Secret — three original mobile escape rooms by LockIn."),
@@ -18,21 +18,6 @@ function RoomsPage() {
         {rooms.map((r, i) => <RoomFeature key={r.slug} room={r} flip={i % 2 === 1} />)}
       </div>
     </>
-  );
-}
-
-export function RoomStats({ room }: { room: Room }) {
-  const t = themeStyles[room.theme];
-  const stats = [["Difficulty", room.difficulty], ["Group size", room.groupSize], ["Duration", room.duration], ["Age", room.age]];
-  return (
-    <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">
-      {stats.map(([k, v]) => (
-        <div key={k} className="bg-background/80 p-4">
-          <dt className={`text-[0.65rem] uppercase tracking-[0.2em] ${t.accent} ${t.font}`}>{k}</dt>
-          <dd className="mt-1 text-sm">{v}</dd>
-        </div>
-      ))}
-    </dl>
   );
 }
 

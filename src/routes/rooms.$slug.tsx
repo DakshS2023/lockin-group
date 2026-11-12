@@ -1,8 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { getRoom, rooms } from "@/content/site";
-import { themeStyles, RoomCard } from "@/components/site/RoomCard";
-import { RoomStats } from "@/routes/rooms.index";
+import { themeStyles, RoomCard, RoomStats } from "@/components/site/RoomCard";
 
 export const Route = createFileRoute("/rooms/$slug")({
   loader: ({ params }) => {

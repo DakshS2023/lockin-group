@@ -37,3 +37,19 @@ export function RoomCard({ room }: { room: Room }) {
     </article>
   );
 }
+
+export function RoomStats({ room }: { room: Room }) {
+  const t = themeStyles[room.theme];
+  const stats = [["Difficulty", room.difficulty], ["Group size", room.groupSize], ["Duration", room.duration], ["Age", room.age]];
+  return (
+    <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border">
+      {stats.map(([k, v]) => (
+        <div key={k} className="bg-background/80 p-4">
+          <dt className={`text-[0.65rem] uppercase tracking-[0.2em] ${t.accent} ${t.font}`}>{k}</dt>
+          <dd className="mt-1 text-sm">{v}</dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
+
