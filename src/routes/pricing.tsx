@@ -52,10 +52,12 @@ function PricingPage() {
                   );
                 })}
               </ul>
-              <Link to="/book" search={{ package: p.id }}
-                className={`mt-auto block rounded-full pt-0 text-center text-xs font-semibold tracking-[0.18em] ${p.recommended ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:bg-secondary"} mt-8 px-6 py-4`}>
-                {p.recommended ? "BOOK NOW" : "ENQUIRE"}
-              </Link>
+              <div className="mt-auto pt-8">
+                <Link to="/book" search={{ package: p.id }}
+                  className={`block rounded-full px-6 py-4 text-center text-xs font-semibold tracking-[0.18em] ${p.recommended ? "bg-gradient-primary text-primary-foreground" : "border border-border hover:bg-secondary"}`}>
+                  {p.recommended ? "BOOK NOW" : "ENQUIRE"}
+                </Link>
+              </div>
             </div>
           ))}
         </div>
