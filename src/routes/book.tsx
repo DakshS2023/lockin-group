@@ -11,10 +11,12 @@ import { PageHero, seo } from "@/components/site/PageHero";
 type Search = { room?: string; package?: string };
 
 export const Route = createFileRoute("/book")({
-  validateSearch: (s: Record<string, unknown>): Search => ({
-    room: typeof s.room === "string" ? s.room : undefined,
-    package: typeof s.package === "string" ? s.package : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): Search => {
+    const out: Search = {};
+    if (typeof s["room"] === "string") out.room = s["room"];
+    if (typeof s["package"] === "string") out.package = s["package"];
+    return out;
+  },
   head: () => seo("Book a Consultation — LockIn Group", "Plan your next adventure. Request a free consultation for a LockIn mobile escape-room experience in Singapore."),
   component: BookPage,
 });

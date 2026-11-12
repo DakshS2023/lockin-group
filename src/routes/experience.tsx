@@ -26,7 +26,7 @@ function ExperiencePage() {
                 <video src={v.src} controls preload="metadata" className="aspect-video w-full object-cover" />
               ) : (
                 <div className="relative aspect-video">
-                  <img src={rooms[i % rooms.length].image} alt="" loading="lazy" className="h-full w-full object-cover opacity-40 transition-opacity group-hover:opacity-55" />
+                  <img src={rooms[i % rooms.length]?.image} alt="" loading="lazy" className="h-full w-full object-cover opacity-40 transition-opacity group-hover:opacity-55" />
                   <div className="absolute inset-0 grid place-items-center">
                     <span className="grid h-16 w-16 place-items-center rounded-full bg-gradient-primary shadow-glow"><Play className="ml-1 h-6 w-6 text-primary-foreground" /></span>
                   </div>
