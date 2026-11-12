@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Editable business content (rooms, packages, FAQs, testimonials, videos, contact) lives in `src/content/site.ts`; pages read from it so non-code edits stay in one file.
+- Consultation enquiries insert into `public.enquiries` from the browser (anon INSERT-only RLS, no read access) — keeps submissions private without auth.
