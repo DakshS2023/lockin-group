@@ -26,7 +26,7 @@ function Index() {
       {/* Hero */}
       <section className="relative flex min-h-[100svh] items-end overflow-hidden">
         <img src={site.heroImage} alt="" width={1920} height={1088} className="absolute inset-0 h-full w-full scale-105 object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent" />
         <div className="relative mx-auto w-full max-w-7xl px-5 pb-20 pt-40 lg:px-8 lg:pb-28">
           <p className="eyebrow reveal inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-4 py-2 backdrop-blur">
