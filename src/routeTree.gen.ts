@@ -18,7 +18,6 @@ import { Route as FaqRouteImport } from './routes/faq'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
-import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as RoomsIndexRouteImport } from './routes/rooms.index'
 import { Route as RoomsSlugRouteImport } from './routes/rooms.$slug'
 
@@ -67,11 +66,6 @@ const TermsRoute = TermsRouteImport.update({
   path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TestimonialsRoute = TestimonialsRouteImport.update({
-  id: '/testimonials',
-  path: '/testimonials',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const RoomsIndexRoute = RoomsIndexRouteImport.update({
   id: '/rooms/',
   path: '/rooms/',
@@ -93,7 +87,6 @@ export interface FileRoutesByFullPath {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/testimonials': typeof TestimonialsRoute
   '/rooms/$slug': typeof RoomsSlugRoute
   '/rooms/': typeof RoomsIndexRoute
 }
@@ -107,7 +100,6 @@ export interface FileRoutesByTo {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/testimonials': typeof TestimonialsRoute
   '/rooms/$slug': typeof RoomsSlugRoute
   '/rooms': typeof RoomsIndexRoute
 }
@@ -122,7 +114,6 @@ export interface FileRoutesById {
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
-  '/testimonials': typeof TestimonialsRoute
   '/rooms/$slug': typeof RoomsSlugRoute
   '/rooms/': typeof RoomsIndexRoute
 }
@@ -138,7 +129,6 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/terms'
-    | '/testimonials'
     | '/rooms/$slug'
     | '/rooms/'
   fileRoutesByTo: FileRoutesByTo
@@ -152,7 +142,6 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/terms'
-    | '/testimonials'
     | '/rooms/$slug'
     | '/rooms'
   id:
@@ -166,7 +155,6 @@ export interface FileRouteTypes {
     | '/pricing'
     | '/privacy'
     | '/terms'
-    | '/testimonials'
     | '/rooms/$slug'
     | '/rooms/'
   fileRoutesById: FileRoutesById
@@ -181,7 +169,6 @@ export interface RootRouteChildren {
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
-  TestimonialsRoute: typeof TestimonialsRoute
   RoomsSlugRoute: typeof RoomsSlugRoute
   RoomsIndexRoute: typeof RoomsIndexRoute
 }
@@ -251,13 +238,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/testimonials': {
-      id: '/testimonials'
-      path: '/testimonials'
-      fullPath: '/testimonials'
-      preLoaderRoute: typeof TestimonialsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/rooms/': {
       id: '/rooms/'
       path: '/rooms'
@@ -285,7 +265,6 @@ const rootRouteChildren: RootRouteChildren = {
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
-  TestimonialsRoute: TestimonialsRoute,
   RoomsSlugRoute: RoomsSlugRoute,
   RoomsIndexRoute: RoomsIndexRoute,
 }

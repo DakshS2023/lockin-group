@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 
 export function CtaBand() {
@@ -8,9 +7,9 @@ export function CtaBand() {
         <div className="pointer-events-none absolute -bottom-32 left-1/2 h-72 w-[700px] -translate-x-1/2 rounded-full bg-primary/30 blur-[100px]" />
         <h2 className="relative text-3xl font-semibold md:text-5xl">Ready to lock in?</h2>
         <p className="relative mx-auto mt-5 max-w-lg text-muted-foreground">Tell us about your event and we’ll help you find the perfect experience.</p>
-        <Button asChild className="mt-9 h-auto"><Link to="/contact" hash="consultation" className="relative mt-9 inline-flex rounded-full bg-gradient-primary px-8 py-4 text-xs font-semibold tracking-[0.18em] text-primary-foreground shadow-glow">
+        <Link to="/book" className="relative mt-9 inline-flex rounded-full bg-gradient-primary px-8 py-4 text-xs font-semibold tracking-[0.18em] text-primary-foreground shadow-glow">
           BOOK A CONSULTATION
-        </Link></Button>
+        </Link>
       </div>
     </section>
   );

@@ -1,7 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Room, RoomTheme } from "@/content/site";
 
 export const themeStyles: Record<RoomTheme, { accent: string; border: string; label: string; font: string; glow: string }> = {
@@ -12,9 +10,8 @@ export const themeStyles: Record<RoomTheme, { accent: string; border: string; la
 
 export function RoomCard({ room }: { room: Room }) {
   const t = themeStyles[room.theme];
-  const [expanded, setExpanded] = useState(false);
   return (
-    <article className={`group relative flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-all duration-500 hover:-translate-y-1 ${t.border}`}>
+    <article className={`group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 hover:-translate-y-1 ${t.border}`}>
       <div className="relative aspect-[4/3] overflow-hidden">
         <img src={room.image} alt={`${room.name} escape room`} loading="lazy" width={1600} height={1008}
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
@@ -32,14 +29,10 @@ export function RoomCard({ room }: { room: Room }) {
             <li key={f} className="rounded-full bg-secondary px-3 py-1 text-xs text-secondary-foreground">{f}</li>
           ))}
         </ul>
-        <Button variant="ghost" onClick={() => setExpanded(v => !v)} aria-expanded={expanded} aria-controls={`story-${room.slug}`} className="mt-6 justify-start px-0">
-          {expanded ? "Read less" : "Read more"} <ChevronDown className={expanded ? "rotate-180" : ""} />
-        </Button>
-        {expanded && <div id={`story-${room.slug}`} className="mt-4 border-t border-border pt-5">
-          <p className="text-sm leading-relaxed text-muted-foreground">{room.storyline}</p>
-          <div className="mt-5"><RoomStats room={room} /></div>
-          <Button asChild variant="outline" className="mt-5"><Link to="/contact" search={{ room: room.slug }} hash="consultation">Enquire <ArrowRight /></Link></Button>
-        </div>}
+        <Link to="/rooms/$slug" params={{ slug: room.slug }}
+          className="mt-auto inline-flex items-center gap-2 pt-7 text-xs font-semibold tracking-[0.18em] text-foreground">
+          EXPLORE EXPERIENCE <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </Link>
       </div>
     </article>
   );

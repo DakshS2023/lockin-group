@@ -1,13 +1,14 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Logo } from "./Logo";
 
 export const navLinks = [
   { to: "/", label: "Home" },
-  { to: "/pricing", label: "Packages" },
-  { to: "/testimonials", label: "Testimonials" },
+  { to: "/rooms", label: "Our Rooms" },
+  { to: "/pricing", label: "Packages & Pricing" },
+  { to: "/experience", label: "The Experience" },
+  { to: "/about", label: "About Us" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -45,19 +46,19 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <Link
-            to="/contact" hash="consultation"
+            to="/book"
             className="hidden rounded-full bg-gradient-primary px-5 py-2.5 text-xs font-semibold tracking-wider text-primary-foreground shadow-glow transition-transform hover:scale-[1.03] sm:inline-flex"
           >
             BOOK A CONSULTATION
           </Link>
-          <Button variant="ghost" size="icon"
+          <button
             className="rounded-full p-2 text-foreground lg:hidden"
             onClick={() => setOpen((o) => !o)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
           >
             {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
+          </button>
         </div>
       </div>
       {open && (
@@ -73,7 +74,7 @@ export function Header() {
             </Link>
           ))}
           <Link
-            to="/contact" hash="consultation"
+            to="/book"
             onClick={() => setOpen(false)}
             className="mt-5 flex justify-center rounded-full bg-gradient-primary px-5 py-3.5 text-sm font-semibold tracking-wider text-primary-foreground"
           >
