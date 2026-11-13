@@ -4,6 +4,7 @@ import { rooms, site } from "@/content/site";
 import { RoomCard } from "@/components/site/RoomCard";
 import { seo } from "@/components/site/PageHero";
 import { CtaBand } from "@/components/site/CtaBand";
+import { PackagePreview } from "@/components/site/PackagePreview";
 
 export const Route = createFileRoute("/")({
   head: () => seo(
@@ -91,6 +92,8 @@ function Index() {
           {rooms.map((r) => <RoomCard key={r.slug} room={r} />)}
         </div>
       </section>
+
+      <PackagePreview />
 
       {/* Why */}
       <section className="border-y border-border bg-card/40">
