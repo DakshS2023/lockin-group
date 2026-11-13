@@ -31,3 +31,5 @@ use the editor.
 
 - Editable business content (rooms, packages, FAQs, testimonials, videos, contact) lives in `src/content/site.ts`; pages read from it so non-code edits stay in one file.
 - Consultation enquiries insert into `public.enquiries` from the browser (anon INSERT-only RLS, no read access) — keeps submissions private without auth.
+- Keep four content pages with expanded home sections and legacy redirects so published links survive consolidation.
+- Reuse the consultation form on Contact and read package cards and comparison cells from shared content so enquiry selections stay consistent.

@@ -21,7 +21,7 @@ export function Footer() {
             {navLinks.map((l) => (
               <li key={l.to}><Link to={l.to} className="text-muted-foreground hover:text-foreground">{l.label}</Link></li>
             ))}
-            <li><Link to="/faq" className="text-muted-foreground hover:text-foreground">FAQ</Link></li>
+
           </ul>
         </div>
         <div>
@@ -39,8 +39,8 @@ export function Footer() {
         <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-6 text-xs text-muted-foreground sm:flex-row sm:justify-between lg:px-8">
           <p>© {new Date().getFullYear()} LockIn Group. All rights reserved.</p>
           <div className="flex gap-5">
-            <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
-            <Link to="/terms" className="hover:text-foreground">Terms & Conditions</Link>
+            <Link to="/" hash="privacy" className="hover:text-foreground">Privacy Policy</Link>
+            <Link to="/" hash="terms" className="hover:text-foreground">Terms & Conditions</Link>
           </div>
         </div>
       </div>

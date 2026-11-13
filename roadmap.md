@@ -1,0 +1,4 @@
+- [x] Reduce the site to Home, Packages, Testimonials and Contact, preserving old links through redirects.
+- [x] Move room details, about, highlights, FAQ and legal content into expandable home sections; consultation form into Contact.
+- [x] Add the supplied provisional package durations, inclusions and comparison, with tests.
+- [x] Check navigation, expanded home content and package enquiry selection on desktop and mobile.
