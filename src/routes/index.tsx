@@ -93,6 +93,8 @@ function Index() {
         </div>
       </section>
 
+      <PackagePreview />
+
       {/* Why */}
       <section className="border-y border-border bg-card/40">
         <div className="mx-auto max-w-7xl px-5 py-28 lg:px-8">
