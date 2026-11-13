@@ -5,8 +5,8 @@ import { PageHero, seo } from "@/components/site/PageHero";
 import { ConsultationForm } from "@/components/site/ConsultationForm";
 export const Route = createFileRoute("/contact")({
   validateSearch: (s: Record<string, unknown>): { room?: string; package?: string } => ({
-    ...(typeof s.room === "string" ? { room: s.room } : {}),
-    ...(typeof s.package === "string" ? { package: s.package } : {}),
+    ...(typeof s["room"] === "string" ? { room: s["room"] } : {}),
+    ...(typeof s["package"] === "string" ? { package: s["package"] } : {}),
   }),
   head: () => seo("Contact & Consultation — LockIn Group Singapore", "Ask about LockIn Plus packages or request a consultation for a mobile escape-room event in Singapore."),
   component: Contact,

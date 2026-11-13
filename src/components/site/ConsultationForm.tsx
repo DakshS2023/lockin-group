@@ -12,7 +12,7 @@ const allPackages = packages.map(p => ({ id: p.id, label: `LockIn Plus — ${p.n
 
 const field = "w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/30";
 
-export function ConsultationForm({ room, selectedPackage }: { room?: string; selectedPackage?: string }) {
+export function ConsultationForm({ room, selectedPackage }: { room?: string | undefined; selectedPackage?: string | undefined }) {
   const [done, setDone] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<EnquiryInput>({
