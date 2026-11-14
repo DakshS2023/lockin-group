@@ -89,52 +89,124 @@ export const rooms: Room[] = [
 
 export const getRoom = (slug: string) => rooms.find((r) => r.slug === slug);
 
-/* ---------- Packages ---------- */
-export type Tier = "lockin" | "plus";
+/* ---------- LockIn Packages (all include Synesthesia AV) ---------- */
 export type Package = {
   id: string;
   name: string;
+  duration: string;
+  tagline: string;
   price: string;
-  blurb: string;
   recommended?: boolean;
-  features: string[]; // must match keys in comparison list
+  highlights: string[];
+  bestFor: string;
 };
 
-export const packageTiers: Record<
-  Tier,
-  { label: string; intro: string; comparison: string[]; packages: Package[] }
-> = {
-  lockin: {
-    label: "LockIn",
-    intro:
-      "The standard escape-room experience, operated by LockIn Escape Room without Synesthesia AV enhancements.",
-    comparison: ["Original escape-room experience", "Delivered to your venue", "Game master"],
-    packages: [
-      { id: "lockin-basic", name: "LockIn Basic", price: "[PRICE]", blurb: "[SHORT DESCRIPTION]", features: ["Original escape-room experience", "Delivered to your venue"] },
-      { id: "lockin-standard", name: "LockIn Standard", price: "[PRICE]", blurb: "[SHORT DESCRIPTION]", recommended: true, features: ["Original escape-room experience", "Delivered to your venue", "Game master"] },
-      { id: "lockin-premium", name: "LockIn Premium", price: "[PRICE]", blurb: "[SHORT DESCRIPTION]", features: ["Original escape-room experience", "Delivered to your venue", "Game master"] },
+export const packagesIntro =
+  "All packages include Synesthesia AV sound, music and effects. Choose your level of adventure.";
+
+export const packages: Package[] = [
+  {
+    id: "lockin-basic",
+    name: "LockIn Basic",
+    duration: "45–50 minutes",
+    tagline: "The essential escape-room experience.",
+    price: "[PRICE]",
+    highlights: [
+      "Original LockIn game",
+      "Dedicated game master",
+      "Basic sound effects and background music",
+      "Standard puzzles and props",
+    ],
+    bestFor: "Affordable group entertainment and first-time players.",
+  },
+  {
+    id: "lockin-standard",
+    name: "LockIn Standard",
+    duration: "60 minutes",
+    tagline: "A more immersive adventure.",
+    price: "[PRICE]",
+    recommended: true,
+    highlights: [
+      "Everything in Basic, plus:",
+      "Standard Synesthesia AV experience",
+      "Enhanced sound effects and atmospheric lighting",
+      "Special effects and immersive introduction",
+      "Limited personalisation",
+      "Premium props and dedicated technical operator",
+    ],
+    bestFor: "Birthdays, family events and groups wanting a more exciting experience.",
+  },
+  {
+    id: "lockin-premium",
+    name: "LockIn Premium",
+    duration: "75–80 minutes",
+    tagline: "The ultimate cinematic experience.",
+    price: "[PRICE]",
+    highlights: [
+      "Everything in Standard, plus:",
+      "Synesthesia+ AV experience",
+      "Advanced lighting and special effects",
+      "Free live actor",
+      "Extensive storyline customisation and customised puzzles",
+      "Personalised messages and final reveal",
+      "Special finale sequence and priority planning",
+    ],
+    bestFor: "Big celebrations, premium birthday parties and unforgettable corporate events.",
+  },
+];
+
+/* ---------- Full perks comparison ----------
+   Values per package: "✓" included, "—" not included, or a short label
+   (e.g. "Enhanced" = upgraded version). Order matches `packages`. */
+export type ComparisonRow = { feature: string; values: [string, string, string] };
+export type ComparisonGroup = { group: string; rows: ComparisonRow[] };
+
+export const packageComparison: ComparisonGroup[] = [
+  {
+    group: "Experience",
+    rows: [
+      { feature: "Game duration", values: ["45–50 min", "60 min", "75–80 min"] },
+      { feature: "Dedicated game master", values: ["✓", "✓", "✓"] },
+      { feature: "Original storyline", values: ["✓", "✓", "✓"] },
+      { feature: "Interactive puzzles", values: ["✓", "✓", "✓"] },
+      { feature: "Hints and assistance", values: ["✓", "✓", "✓"] },
     ],
   },
-  plus: {
-    label: "LockIn Plus",
-    intro:
-      "The full LockIn escape-room experience, enhanced with sound, lighting and visual effects by Synesthesia AV.",
-    comparison: [
-      "Sound effects",
-      "Background music",
-      "Lighting effects",
-      "Visual effects",
-      "Immersive introductions",
-      "Special effects",
-      "Technical operator",
-    ],
-    packages: [
-      { id: "immersia-starter", name: "Immersia Starter", price: "[PRICE]", blurb: "[SHORT DESCRIPTION]", features: ["Sound effects", "Background music"] },
-      { id: "immersia-plus", name: "Immersia Plus", price: "[PRICE]", blurb: "[SHORT DESCRIPTION]", recommended: true, features: ["Sound effects", "Background music", "Lighting effects", "Immersive introductions"] },
-      { id: "immersia-ultimatum", name: "Immersia Ultimatum", price: "[PRICE]", blurb: "[SHORT DESCRIPTION]", features: ["Sound effects", "Background music", "Lighting effects", "Visual effects", "Immersive introductions", "Special effects", "Technical operator"] },
+  {
+    group: "Synesthesia AV",
+    rows: [
+      { feature: "Synesthesia AV", values: ["Basic", "Standard", "Synesthesia+"] },
+      { feature: "Background music", values: ["✓", "✓", "✓"] },
+      { feature: "Sound effects", values: ["Basic", "Enhanced", "Premium"] },
+      { feature: "Lighting effects", values: ["—", "Good", "Advanced"] },
+      { feature: "Special effects", values: ["—", "Good", "Advanced"] },
+      { feature: "Immersive introduction", values: ["—", "✓", "Enhanced"] },
     ],
   },
-};
+  {
+    group: "Customisation",
+    rows: [
+      { feature: "Customised storyline", values: ["—", "Limited", "Extensive"] },
+      { feature: "Personalised messages", values: ["—", "Limited", "✓"] },
+      { feature: "Customised puzzles", values: ["—", "—", "✓"] },
+      { feature: "Personalised final reveal", values: ["—", "—", "✓"] },
+    ],
+  },
+  {
+    group: "Exclusive extras",
+    rows: [
+      { feature: "Live actor", values: ["—", "—", "✓ Free"] },
+      { feature: "Additional game master", values: ["—", "—", "Upon request"] },
+      { feature: "Special finale sequence", values: ["—", "—", "✓"] },
+      { feature: "Premium props and equipment", values: ["—", "✓", "Enhanced"] },
+      { feature: "Dedicated technical operator", values: ["—", "✓", "✓"] },
+      { feature: "Priority setup planning", values: ["—", "—", "✓"] },
+    ],
+  },
+];
+
+export const packagesDisclaimer =
+  "Package inclusions are subject to confirmation. The exact AV equipment, staffing and customisation scope will be agreed with you before booking. Advertised durations refer to gameplay.";
 
 /* ---------- Testimonials (placeholders only — replace with approved reviews) ---------- */
 export const testimonials = [
