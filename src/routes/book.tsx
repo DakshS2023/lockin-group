@@ -21,10 +21,7 @@ export const Route = createFileRoute("/book")({
   component: BookPage,
 });
 
-const allPackages = [
-  ...packageTiers.lockin.packages.map((p) => ({ id: p.id, label: `LockIn — ${p.name}` })),
-  ...packageTiers.plus.packages.map((p) => ({ id: p.id, label: `LockIn Plus — ${p.name}` })),
-];
+const allPackages = packages.map((p) => ({ id: p.id, label: p.name }));
 
 const field = "w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/30";
 
@@ -97,8 +94,7 @@ function BookPage() {
           <L label="Preferred package">
             <select className={field} {...register("preferred_package")}>
               <option value="">Not sure yet</option>
-              <optgroup label="LockIn">{packageTiers.lockin.packages.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}</optgroup>
-              <optgroup label="LockIn Plus">{packageTiers.plus.packages.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}</optgroup>
+              {packages.map((p) => <option key={p.id} value={p.id}>{p.name} — {p.duration}</option>)}
             </select>
           </L>
           <L label="Estimated participants"><input type="number" min={1} className={field} {...register("participants")} /><Err name="participants" /></L>
