@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Fragment } from "react";
 import { Check, Clock, Minus } from "lucide-react";
 import { packages, packageComparison, packagesIntro, packagesDisclaimer } from "@/content/site";
 import { PageHero, seo } from "@/components/site/PageHero";
@@ -81,8 +82,8 @@ function PricingPage() {
                   {packages.map((p) => <td key={p.id} className="p-5 text-center font-semibold">{p.price}</td>)}
                 </tr>
                 {packageComparison.map((g) => (
-                  <>
-                    <tr key={g.group} className="border-t border-border bg-card/60">
+                  <Fragment key={g.group}>
+                    <tr className="border-t border-border bg-card/60">
                       <td colSpan={4} className="px-5 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-primary-glow">
                         {g.group}
                       </td>
