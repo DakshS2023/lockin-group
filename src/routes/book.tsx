@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { rooms, packageTiers } from "@/content/site";
+import { rooms, packages } from "@/content/site";
 import { enquirySchema, eventTypes, type EnquiryInput } from "@/lib/enquiry";
 import { PageHero, seo } from "@/components/site/PageHero";
 
