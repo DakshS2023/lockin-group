@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Fragment } from "react";
 import { Check, Clock, Minus } from "lucide-react";
-import { packages, packageComparison, packagesIntro, packagesDisclaimer } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 import { PageHero, seo } from "@/components/site/PageHero";
 
 export const Route = createFileRoute("/pricing")({
@@ -17,6 +17,7 @@ function CellValue({ value }: { value: string }) {
 }
 
 function PricingPage() {
+  const { packages, packageComparison, packagesIntro, packagesDisclaimer } = useSiteContent();
   return (
     <>
       <PageHero eyebrow="LockIn Packages" title={<>Choose your level of <span className="text-gradient">adventure.</span></>}>

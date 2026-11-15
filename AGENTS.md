@@ -29,5 +29,7 @@ use the editor.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
 
-- Editable business content (rooms, packages, FAQs, testimonials, videos, contact) lives in `src/content/site.ts`; pages read from it so non-code edits stay in one file.
+- `src/content/site.ts` supplies website defaults; public pages consume the shared site-content query and admins save validated content to `public.site_content`, so edits persist across all pages without redeploying.
 - Consultation enquiries insert into `public.enquiries` from the browser (anon INSERT-only RLS, no read access) — keeps submissions private without auth.
+- Admin privileges live in protected `public.user_roles`; verified-email provisioning grants the designated account access, and both server handlers and RLS enforce it to prevent client-side privilege escalation.
+- Website uploads use the private `site-media` bucket with public-read RLS and renewable signed URLs; persisted content stores media paths rather than expiring URLs because workspace policy blocks public buckets.

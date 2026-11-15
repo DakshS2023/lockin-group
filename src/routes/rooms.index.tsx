@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { rooms, type Room } from "@/content/site";
+import type { Room } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 import { PageHero, seo } from "@/components/site/PageHero";
 import { themeStyles, RoomStats } from "@/components/site/RoomCard";
 
@@ -9,6 +10,7 @@ export const Route = createFileRoute("/rooms/")({
 });
 
 function RoomsPage() {
+  const { rooms } = useSiteContent();
   return (
     <>
       <PageHero eyebrow="Our rooms" title={<>Three worlds. <span className="text-gradient">One choice.</span></>}>

@@ -1,11 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-import { getRoom, rooms } from "@/content/site";
+import { getSiteContent } from "@/lib/site-content.functions";
+import { useSiteContent } from "@/lib/site-content";
 import { themeStyles, RoomCard, RoomStats } from "@/components/site/RoomCard";
 
 export const Route = createFileRoute("/rooms/$slug")({
-  loader: ({ params }) => {
-    const room = getRoom(params.slug);
+  loader: async ({ params }) => {
+    const content = await getSiteContent();
+    const room = content.rooms.find(r => r.slug === params.slug);
     if (!room) throw notFound();
     return { room };
   },
@@ -24,7 +26,9 @@ export const Route = createFileRoute("/rooms/$slug")({
 });
 
 function RoomPage() {
-  const { room } = Route.useLoaderData();
+  const { rooms } = useSiteContent();
+  const loaded = Route.useLoaderData();
+  const room = rooms.find(r => r.slug === loaded.room.slug) ?? loaded.room;
   const t = themeStyles[room.theme];
   const others = rooms.filter((r) => r.slug !== room.slug);
   return (
