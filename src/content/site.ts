@@ -236,3 +236,13 @@ export const faqs = [
   { q: "How do we book?", a: "Submit a consultation request through our booking page. Our team will contact you to discuss your event and confirm the details. Bookings are only confirmed once approved by the LockIn team." },
   { q: "Can we customise an experience?", a: "[CUSTOMISATION DETAILS]" },
 ];
+
+export const legal = {
+  privacy: "We collect the details you submit through our consultation form only to respond to your enquiry and plan your event. We do not sell your data. Photos and videos featuring customers are only published with consent. To request access, correction or deletion of your data, contact us at [CONTACT EMAIL]. [FULL PRIVACY POLICY — TO BE PROVIDED, INCLUDING PDPA DETAILS]",
+  terms: "Submitting a consultation request does not confirm a booking. Bookings are confirmed only once approved by the LockIn team. Final pricing may depend on the selected experience, venue and event requirements. [FULL TERMS & CONDITIONS — TO BE PROVIDED]",
+};
+
+export const gallery = Array.from({ length: 8 }, () => ({ image: "", caption: "Photo placeholder" }));
+
+export const defaultContent = { site, rooms, packages, packagesIntro, packagesDisclaimer, packageComparison, testimonials, videos, faqs, legal, gallery };
+export type SiteContent = typeof defaultContent;
