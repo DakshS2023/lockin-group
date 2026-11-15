@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { Check, Clock } from "lucide-react";
-import { packages, packagesIntro } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 
 export function PackagePreview() {
+  const { packages, packagesIntro } = useSiteContent();
   return (
     <section className="mx-auto max-w-7xl px-5 pb-28 lg:px-8">
       <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">

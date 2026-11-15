@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { faqs } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 import { PageHero, seo } from "@/components/site/PageHero";
 import { CtaBand } from "@/components/site/CtaBand";
 
@@ -10,6 +10,7 @@ export const Route = createFileRoute("/faq")({
 });
 
 function Faq() {
+  const { faqs } = useSiteContent();
   return (
     <>
       <PageHero eyebrow="FAQ" title="Questions, answered." />

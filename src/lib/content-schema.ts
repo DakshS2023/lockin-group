@@ -2,7 +2,7 @@ import { z } from "zod";
 import { defaultContent, type SiteContent } from "@/content/site";
 
 export function safeMediaUrl(value: string) {
-  return value === "" || value.startsWith("/assets/") || value.startsWith("/src/assets/") || /^https:\/\//i.test(value);
+  return value === "" || /^media:[a-zA-Z0-9._/-]+$/.test(value) || value.startsWith("/assets/") || value.startsWith("/src/assets/") || /^https:\/\//i.test(value);
 }
 
 function schemaFor(value: unknown, key = ""): z.ZodTypeAny {
@@ -15,7 +15,13 @@ function schemaFor(value: unknown, key = ""): z.ZodTypeAny {
   if (typeof value === "boolean") return z.boolean();
   if (value === null) return z.number().min(0).max(5).nullable();
   if (Array.isArray(value)) return z.array(schemaFor(value[0])).max(100);
-  if (value && typeof value === "object") return z.object(Object.fromEntries(Object.entries(value).map(([k, v]) => [k, schemaFor(v, k)])));
+  if (value && typeof value === "object") {
+    const shape = Object.fromEntries(Object.entries(value).map(([k, v]) => [k, schemaFor(v, k)]));
+    if ("highlights" in value) shape.recommended = z.boolean().optional();
+    if ("theme" in value) shape.theme = z.enum(["horror", "classified", "genie"]);
+    if ("slug" in value) shape.slug = z.enum(["search-and-rescue", "alpha-team-classified", "the-genies-secret"]);
+    return z.object(shape);
+  }
   return z.unknown();
 }
 

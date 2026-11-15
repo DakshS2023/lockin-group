@@ -1,9 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
 import { navLinks } from "./Header";
-import { site } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 
 export function Footer() {
+  const { site } = useSiteContent();
   return (
     <footer className="border-t border-border bg-card/40">
       <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-4 lg:px-8">
@@ -41,6 +42,7 @@ export function Footer() {
           <div className="flex gap-5">
             <Link to="/privacy" className="hover:text-foreground">Privacy Policy</Link>
             <Link to="/terms" className="hover:text-foreground">Terms & Conditions</Link>
+            <Link to="/admin" className="hover:text-foreground">Admin</Link>
           </div>
         </div>
       </div>

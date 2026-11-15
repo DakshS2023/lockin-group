@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Play, Quote, ShieldCheck, Star } from "lucide-react";
-import { testimonials, videos, rooms } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 import { PageHero, seo } from "@/components/site/PageHero";
 import { CtaBand } from "@/components/site/CtaBand";
 
@@ -10,6 +10,7 @@ export const Route = createFileRoute("/experience")({
 });
 
 function ExperiencePage() {
+  const { testimonials, videos, rooms, gallery } = useSiteContent();
   return (
     <>
       <PageHero eyebrow="The LockIn experience" title={<>What it feels like to <span className="text-gradient">lock in.</span></>}>
@@ -46,9 +47,9 @@ function ExperiencePage() {
         <p className="eyebrow">Event highlights</p>
         <h2 className="mt-4 text-3xl font-semibold md:text-4xl">From previous experiences</h2>
         <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {Array.from({ length: 8 }).map((_, i) => (
+          {gallery.map((photo, i) => (
             <div key={i} className={`grid place-items-center rounded-2xl border border-dashed border-border bg-card text-xs text-muted-foreground ${i === 0 || i === 5 ? "row-span-2 aspect-[1/2]" : "aspect-square"}`}>
-              Photo placeholder
+              {photo.image ? <img src={photo.image} alt={photo.caption} loading="lazy" className="h-full w-full object-cover" /> : photo.caption}
             </div>
           ))}
         </div>

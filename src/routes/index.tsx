@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Sparkles, Truck, Wallet, Users } from "lucide-react";
-import { rooms, site } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 import { RoomCard } from "@/components/site/RoomCard";
 import { seo } from "@/components/site/PageHero";
 import { CtaBand } from "@/components/site/CtaBand";
@@ -22,6 +22,7 @@ const why = [
 ];
 
 function Index() {
+  const { rooms, site } = useSiteContent();
   return (
     <>
       {/* Hero */}

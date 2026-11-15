@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, MapPin, MessageCircle } from "lucide-react";
-import { site } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 import { PageHero, seo } from "@/components/site/PageHero";
 
 export const Route = createFileRoute("/contact")({
@@ -9,6 +9,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const { site } = useSiteContent();
   const items = [
     { icon: Mail, label: "Email", value: site.email },
     { icon: MapPin, label: "Location", value: site.location },

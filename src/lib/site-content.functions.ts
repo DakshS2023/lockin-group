@@ -19,6 +19,15 @@ export const getSiteContent = createServerFn({ method: "GET" }).handler(async ()
   });
   const { data, error } = await client.from("site_content").select("content").eq("id", "main").maybeSingle();
   if (error) throw new Error("Website content could not be loaded.");
-  if (!data) return defaultContent;
-  return contentSchema.parse(data.content);
+  const content = data ? contentSchema.parse(data.content) : defaultContent;
+  async function resolveMedia(value: unknown): Promise<unknown> {
+    if (typeof value === "string" && value.startsWith("media:")) {
+      const result = await client.storage.from("site-media").createSignedUrl(value.slice(6), 86400);
+      return result.data?.signedUrl ?? "";
+    }
+    if (Array.isArray(value)) return Promise.all(value.map(resolveMedia));
+    if (value && typeof value === "object") return Object.fromEntries(await Promise.all(Object.entries(value).map(async ([k,v]) => [k, await resolveMedia(v)])));
+    return value;
+  }
+  return contentSchema.parse(await resolveMedia(content));
 });

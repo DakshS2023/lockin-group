@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { rooms, packages } from "@/content/site";
+import { useSiteContent } from "@/lib/site-content";
 import { enquirySchema, eventTypes, type EnquiryInput } from "@/lib/enquiry";
 import { PageHero, seo } from "@/components/site/PageHero";
 
@@ -21,11 +21,11 @@ export const Route = createFileRoute("/book")({
   component: BookPage,
 });
 
-const allPackages = packages.map((p) => ({ id: p.id, label: p.name }));
-
 const field = "w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/30";
 
 function BookPage() {
+  const { rooms, packages } = useSiteContent();
+  const allPackages = packages.map((p) => ({ id: p.id, label: p.name }));
   const search = Route.useSearch();
   const [done, setDone] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
