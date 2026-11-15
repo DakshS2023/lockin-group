@@ -1,0 +1,4 @@
+- [ ] Add secure admin sign-in and admin-only booking access.
+- [ ] Add saved website content editors and connect all public displays.
+- [ ] Add video and room media editing.
+- [ ] Test permissions, content saves, and booking management.
