@@ -20,9 +20,10 @@ export const getSiteContent = createServerFn({ method: "GET" }).handler(async ()
   const { data, error } = await client.from("site_content").select("content").eq("id", "main").maybeSingle();
   if (error) throw new Error("Website content could not be loaded.");
   const content = data ? contentSchema.parse(data.content) : defaultContent;
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   async function resolveMedia(value: unknown): Promise<unknown> {
     if (typeof value === "string" && value.startsWith("media:")) {
-      const result = await client.storage.from("site-media").createSignedUrl(value.slice(6), 86400);
+      const result = await supabaseAdmin.storage.from("site-media").createSignedUrl(value.slice(6), 86400);
       return result.data?.signedUrl ?? "";
     }
     if (Array.isArray(value)) return Promise.all(value.map(resolveMedia));

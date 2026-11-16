@@ -17,9 +17,9 @@ function schemaFor(value: unknown, key = ""): z.ZodTypeAny {
   if (Array.isArray(value)) return z.array(schemaFor(value[0])).max(100);
   if (value && typeof value === "object") {
     const shape = Object.fromEntries(Object.entries(value).map(([k, v]) => [k, schemaFor(v, k)]));
-    if ("highlights" in value) shape.recommended = z.boolean().optional();
-    if ("theme" in value) shape.theme = z.enum(["horror", "classified", "genie"]);
-    if ("slug" in value) shape.slug = z.enum(["search-and-rescue", "alpha-team-classified", "the-genies-secret"]);
+    if ("highlights" in value) shape["recommended"] = z.boolean().optional();
+    if ("theme" in value) shape["theme"] = z.enum(["horror", "classified", "genie"]);
+    if ("slug" in value) shape["slug"] = z.enum(["search-and-rescue", "alpha-team-classified", "the-genies-secret"]);
     return z.object(shape);
   }
   return z.unknown();
