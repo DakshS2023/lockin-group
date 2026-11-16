@@ -15,6 +15,13 @@
       "when": 1794711659815,
       "tag": "0001_admin_access_and_site_content",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794809203414,
+      "tag": "0002_restrict_site_media_reads",
+      "breakpoints": true
     }
   ]
 }
