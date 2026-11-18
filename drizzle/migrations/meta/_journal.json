@@ -29,6 +29,13 @@
       "when": 1794809584011,
       "tag": "0003_admin_email_update",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1795000451011,
+      "tag": "0004_admin_operations",
+      "breakpoints": true
     }
   ]
 }

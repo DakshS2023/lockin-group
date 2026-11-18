@@ -14,6 +14,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      booking_notes: {
+        Row: {
+          body: string
+          created_at: string
+          created_by: string
+          enquiry_id: string
+          follow_up_date: string | null
+          id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          created_by?: string
+          enquiry_id: string
+          follow_up_date?: string | null
+          id?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          created_by?: string
+          enquiry_id?: string
+          follow_up_date?: string | null
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_notes_enquiry_id_fkey"
+            columns: ["enquiry_id"]
+            isOneToOne: false
+            referencedRelation: "enquiries"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       enquiries: {
         Row: {
           consultation_at: string | null
@@ -62,6 +97,75 @@ export type Database = {
           preferred_room?: string | null
           status?: string
           venue?: string | null
+        }
+        Relationships: []
+      }
+      room_inspections: {
+        Row: {
+          actions: string
+          checklist: Json
+          created_at: string
+          created_by: string
+          findings: string
+          id: string
+          inspected_on: string
+          inspector: string
+          next_inspection: string | null
+          result: string
+          room_slug: string
+        }
+        Insert: {
+          actions?: string
+          checklist?: Json
+          created_at?: string
+          created_by?: string
+          findings?: string
+          id?: string
+          inspected_on: string
+          inspector: string
+          next_inspection?: string | null
+          result: string
+          room_slug: string
+        }
+        Update: {
+          actions?: string
+          checklist?: Json
+          created_at?: string
+          created_by?: string
+          findings?: string
+          id?: string
+          inspected_on?: string
+          inspector?: string
+          next_inspection?: string | null
+          result?: string
+          room_slug?: string
+        }
+        Relationships: []
+      }
+      room_operations: {
+        Row: {
+          equipment: string
+          internal_notes: string
+          readiness: string
+          room_slug: string
+          setup_instructions: string
+          updated_at: string
+        }
+        Insert: {
+          equipment?: string
+          internal_notes?: string
+          readiness?: string
+          room_slug: string
+          setup_instructions?: string
+          updated_at?: string
+        }
+        Update: {
+          equipment?: string
+          internal_notes?: string
+          readiness?: string
+          room_slug?: string
+          setup_instructions?: string
+          updated_at?: string
         }
         Relationships: []
       }

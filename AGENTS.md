@@ -33,3 +33,4 @@ use the editor.
 - Consultation enquiries insert into `public.enquiries` from the browser (anon INSERT-only RLS, no read access) — keeps submissions private without auth.
 - Admin privileges live in protected `public.user_roles`; verified-email provisioning grants the designated account access, and both server handlers and RLS enforce it to prevent client-side privilege escalation.
 - Website uploads use the private `site-media` bucket with public-read RLS and renewable signed URLs; persisted content stores media paths rather than expiring URLs because workspace policy blocks public buckets.
+- Admin has separate Website and Bookings workspaces; private booking notes, room operations, and inspection history use dedicated admin-only tables so operational information never enters publicly readable site content.

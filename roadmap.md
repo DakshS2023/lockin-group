@@ -1,4 +1,3 @@
-- [ ] Add secure admin sign-in and admin-only booking access.
-- [ ] Add saved website content editors and connect all public displays.
-- [ ] Add video and room media editing.
-- [ ] Test permissions, content saves, and booking management.
+- [ ] Divide admin into Website and Bookings workspaces.
+- [ ] Add private booking notes and follow-up dates, room operational records, and inspection history.
+- [ ] Verify saved records, admin permissions, and mobile layout.
